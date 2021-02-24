@@ -1,9 +1,8 @@
-const SITEURL = "https://shop.xunyoutest.com";
-const WAPSITEURL = "https://shop.xunyoutest.com/wap";
-const APIURL = "https://shop.xunyoutest.com/catering.php";
 
+const SITEURL = SiteUrl;
+const WAPSITEURL = WapSiteUrl;
+const APIURL = ApiUrl + '/catering.php';
 const VERSION = 'v1'; 
-
 const SYSURL = {
 
 		'user/info':APIURL + '?ctl=Index&met=info&typ=json',
@@ -52,7 +51,7 @@ const SYSURL = {
 
 		'pay/pay' : APIURL + '?ctl=Pay&met=pay&typ=e',
 
-		'login':'https://shop.xunyoutest.com/account.php?ctl=Login&met=doLogin&typ=json',
+		'login':SITEURL +'/account.php?ctl=Login&met=doLogin&typ=json',
 		'logout':APIURL + '?ctl=Login&met=logout&typ=json',
 		'register': APIURL + '?ctl=Login&met=register&typ=json',
 		'mplogin' : SITEURL + '/account.php?ctl=Connect_Weixin&met=login&typ=e&flag=mp',

@@ -14,7 +14,7 @@
       搜索菜名
     </div>
     <div class="homeBox">
-      <cube-scroll-nav v-if="group[0]" :side="true" :data="group" :current="group[0].category_name">
+      <cube-scroll-nav v-if="group[0]" :side="true" :data="group" :current="current">
         <cube-scroll-nav-panel
           v-for="(item,i) in group"
           :key="i"
@@ -150,8 +150,9 @@ export default {
         item_attribute: []
       },
       itemId: 0,
-      current: 0,
+      current: '',
       cart_type:1,
+      necessaryCategory:'',
       loadShow:true
     };
   },
@@ -202,8 +203,18 @@ export default {
             group[m].category_goods.push(this.goods[n]);
           }
         }
+    
+        if(this.category[m].category_property == 1){
+      
+          this.necessaryCategory = this.category[m].category_name
+        }
+       
       }
       this.group = group;
+      if(group.lenght > 0){
+        var current = group[0].category_name;
+      }
+      this.current = current;
     },
 
     initCartMap() {
@@ -253,6 +264,7 @@ export default {
           type: 'txt'
         })
         this.toast.show()
+        console.log( this.necessaryCategory )
         return;
       }
       
@@ -264,10 +276,20 @@ export default {
         for (let i in this.cart.items) {
           cart_id.push(this.cart.items[i].cart_id);
         }
-
         if( this.table && this.table.order_id ){
+        
           this.$router.push(`/homeDeal/${cart_id}/${this.table.order_id}`);
         } else {
+          if(!this.cart.necessaryGoodsStatus){
+            this.toast = this.$createToast({
+                txt: '未选必需品',
+                type: 'txt'
+              })
+            this.toast.show()
+            this.current = this.necessaryCategory
+      
+            return
+          }
           this.$router.push(`/homeDeal/${cart_id}`);
         }
 

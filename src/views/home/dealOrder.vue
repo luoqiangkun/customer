@@ -41,7 +41,7 @@
               
             </div>
 
-            <div class="card-cell no-border ud-padding" v-for="(item,i) in confirmData.items">
+            <div class="card-cell no-border ud-padding" :key="i" v-for="(item,i) in confirmData.items">
               <div class="card-cell__left">
                 <div class="card-cell__thumb">
                   <img :src="item.item_image" style="object-fit: contain;" />
@@ -185,7 +185,7 @@ export default {
           this.$router.push(`/successPlaceOrder/${res.data.order_id}`);
         } else {
           this.toast = this.$createToast({
-            txt: '操作失败',
+            txt: res.msg,
             type: 'txt'
           })
           this.toast.show()
@@ -198,7 +198,7 @@ export default {
           this.$router.push(`/successPlaceOrder/${res.data.order_id}`);
         } else {
           this.toast = this.$createToast({
-            txt: '操作失败',
+            txt: res.msg,
             type: 'txt'
           })
           this.toast.show()

@@ -70,7 +70,6 @@ const actions = {
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       userInfo().then(response => {
-       
         const data = response.data
         if( response.status === 200 ){
           if (!data) {
