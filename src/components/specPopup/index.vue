@@ -3,26 +3,28 @@
     <div class="card">
       <div class="card-header">{{food.goods_name}}</div>
       <div class="card-body">
-        <div class="card-row" v-if="food.items.length > 0 ">
+        <div class="card-row" v-if="food.items.length > 1">
           <p>规格</p>
           <div class="card-row__flex">
             <a
               href="javascript:;"
               :class="{'active' : item.item_id === row.item_id}"
+              :key="i"
               v-for="(row,i) in food.items"
               @click="handleSpecChange(row)"
             >{{row.spec_name}}</a>
           </div>
         </div>
 
-        <template v-if="food.goods_attribute">
-          <div class="card-row" v-for="(attribute,k) in food.goods_attribute" v-if="food.goods_attribute.length > 0">
+        <template v-if="food.goods_attribute && food.goods_attribute.length > 0">
+          <div class="card-row" :key="k" v-for="(attribute,k) in food.goods_attribute" >
             <p>{{attribute.name}}</p>
             <div class="card-row__flex">
 
               <a
                 href="javascript:;"
                 :class="{'active' : item.item_attribute[k] && item.item_attribute[k].value === value}"
+                :key="value"
                 v-for="(value) in attribute.items"
                 @click="handleAttributeChange(attribute.name,value,k)"
               >{{value}}</a>
@@ -186,7 +188,7 @@ export default {
                   font-size: 14px;
                   color: #333;
                 }
-                a:after {
+                &:after {
                   content: '';
                   width: 30%;
                   border: 1px solid transparent;

@@ -1,4 +1,4 @@
-import { setLocalStorage,getLocalStorage,delLocalStorage} from '@/utils/storage'
+import { setLocalStorage,delLocalStorage} from '@/utils/storage'
 import { login,userInfo,logout } from '@/api'
 
 const state = {
@@ -51,8 +51,9 @@ const actions = {
           commit('SET_RID', rid)
           commit('SET_UID', uid )
 
+          setLocalStorage('uid',uid,24 * 365 * 5 )
           setLocalStorage('ukey',ukey,24 * 365 * 5 )
-          
+
           resolve( res.data )
 
         } else {
@@ -71,6 +72,8 @@ const actions = {
     return new Promise((resolve, reject) => {
       userInfo().then(response => {
         const data = response.data
+        console.log( 1111 )
+        console.log( data )
         if( response.status === 200 ){
           if (!data) {
             reject('账号信息有误，请重新登录')
@@ -102,7 +105,7 @@ const actions = {
         commit('CLEAR_RID')
         commit('CLEAR_UID' )
         delLocalStorage('ukey');
-
+        delLocalStorage('uid');
         resolve(data);
       }).catch(error => {
         

@@ -16,14 +16,13 @@ export const logout = data => post('logout',data);
  * 登录
  */
 export const mplogin = function(){
-	
 	location.href = SYSURL['mplogin'] + '&callback=' + encodeURIComponent(window.location.href);//暂时注释
 };
 
 /**
  * 用户信息
  */
-export const userInfo = data => req('user/info',data);
+export const userInfo = data => get('user/info',data);
 
 
 /**
