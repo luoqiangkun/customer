@@ -3,7 +3,7 @@
     <div class="top">
       <div class="back"></div>
       <h1>{{table.table_name}}</h1>
-      <div class="order" @click="handleViewOrderRouter"></div>
+      <div class="order" @click="handleViewOrderRouter">我的订单</div>
     </div>
     <div class="searchBar" @click="goSearch">
       <img
@@ -197,7 +197,6 @@ export default {
           category_name: this.category[m].category_name,
           category_goods: []
         });
-
         for (let n in this.goods) {
           if (this.goods[n].category_id === group[m].category_id) {
             group[m].category_goods.push(this.goods[n]);
@@ -330,12 +329,12 @@ export default {
       position: absolute;
       right: 0;
       opacity: .6;
-      width:18px;
-      height:18px;
-      background:url('../../assets/images/order.png');
-      background-report:no-report;
-      background-position:50% 50%;
-      background-size:100%;
+      // width:18px;
+      // height:18px;
+      // background:url('../../assets/images/order.png');
+      // background-report:no-report;
+      // background-position:50% 50%;
+      // background-size:100%;
       margin-right:.5rem;
     }
   }
