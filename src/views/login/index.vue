@@ -8,10 +8,10 @@
         <input type="text" placeholder="用户名" v-model="form.user_account" />
       </div>
       <div class="item">
-       
+
         <input type="password" placeholder="密码" v-model="form.user_password"/>
       </div>
-    </div> 
+    </div>
     <div class="loginBtn">
       <cube-button :primary="true"  @click="doLogin">登录</cube-button>
 
@@ -27,18 +27,17 @@ export default {
         form: {
           user_account: "",
           user_password: ""
-        }
+        },
+        redirect : ''
       }
     },
     methods: {
       doLogin() {
         this.$store.dispatch('user/login', this.form)
         .then(() => {
-          
           this.$router.push({ path: this.redirect || '/' })
         })
         .catch(( error ) => {
-
           this.form.user_password= ''
           this.toast = this.$createToast({
             txt: error,
@@ -46,6 +45,11 @@ export default {
           })
           this.toast.show()
         })
+      }
+    },
+    created(){
+      if(this.$route.query.redirect){
+        this.redirect = this.$route.query.redirect
       }
     }
 }
@@ -91,7 +95,7 @@ export default {
       background-color: #f9f9f9;
 
       border-radius: 1rem;
-      
+
       margin: 0 12%;
       margin-bottom: 1rem;
       text-indent: 0.5rem;
