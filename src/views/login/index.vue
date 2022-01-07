@@ -8,13 +8,11 @@
         <input type="text" placeholder="用户名" v-model="form.user_account" />
       </div>
       <div class="item">
-
         <input type="password" placeholder="密码" v-model="form.user_password"/>
       </div>
     </div>
     <div class="loginBtn">
       <cube-button :primary="true"  @click="doLogin">登录</cube-button>
-
     </div>
   </div>
 </template>
@@ -93,9 +91,7 @@ export default {
     }
     .item {
       background-color: #f9f9f9;
-
       border-radius: 1rem;
-
       margin: 0 12%;
       margin-bottom: 1rem;
       text-indent: 0.5rem;
